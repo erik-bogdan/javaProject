@@ -5,7 +5,9 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "users")
 public class Person extends BasicModel {
-    
+	public static final String PASSWORD_FIELD_NAME = "password"; 
+	public static final String EMAIL_FIELD_NAME = "email";
+	
 	@DatabaseField(id = true, columnName = "first_name")
 	private String firstName;
 	@DatabaseField(columnName = "last_name")
@@ -14,11 +16,11 @@ public class Person extends BasicModel {
 	private int age;
 	@DatabaseField
 	private int gender;
-	
-	public Person()
-	{
-		
-	}
+	@DatabaseField(columnName = EMAIL_FIELD_NAME)
+	private String email;
+	@DatabaseField(columnName = PASSWORD_FIELD_NAME)
+	private String password;
+
 	
 	public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -50,6 +52,22 @@ public class Person extends BasicModel {
 	
 	public int getGender() {
         return this.gender;
+    }
+
+	public void setEmail(String email) {
+        this.email = email;
+    }
+	
+	public String getEmail() {
+        return this.email;
+    }
+
+	public void setPassword(String password) {
+        this.password = password;
+    }
+	
+	public String getPassword() {
+        return this.password;
     }
 	
 	public String toString() { 
