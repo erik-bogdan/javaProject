@@ -32,10 +32,13 @@ public class PersonController extends BaseController {
     public static void person() throws Exception {
 
     	personDao = DaoManager.createDao(dbConn, Person.class);
+    	System.out.println(loggedPerson);
     	//createPerson();
     	
     	List<Person> peopleList =
     			personDao.queryBuilder()
+    			.where()
+    			.ne(Person.EMAIL_FIELD_NAME, loggedPerson.get(0).getEmail())
     			.query();
     	likedPerson = new ArrayList<Person>();
     	dislikedPerson = new ArrayList<Person>();

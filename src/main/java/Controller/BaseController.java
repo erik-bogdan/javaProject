@@ -18,11 +18,12 @@ public class BaseController {
 	
 	public static Database database;
 	public static ConnectionSource dbConn;
+	public static List<Person> loggedPerson;
 	
 	public BaseController() throws SQLException {
 		makeConnection();
 		UserManagement userManagement = new UserManagement(dbConn);
-		userManagement.login();
+		loggedPerson = userManagement.login();
 	}
 	
 	public static void makeConnection() {

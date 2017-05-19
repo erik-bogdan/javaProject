@@ -23,7 +23,7 @@ public class UserManagement
 		dbConn = dbConnection;
 	}
 	
-	public static void login() throws SQLException
+	public static List<Person> login() throws SQLException
 	{
     	Scanner scanInput = new Scanner(System.in);
 
@@ -42,11 +42,12 @@ public class UserManagement
     			.and()
     			.eq(Person.PASSWORD_FIELD_NAME, password)
     			.query();
-		System.out.println(loggedPerson);
+		//System.out.println(loggedPerson);
 		if (!loggedPerson.isEmpty()) {
 			break;
 		}
 		
 		}
+		return loggedPerson;
 	}
 }
