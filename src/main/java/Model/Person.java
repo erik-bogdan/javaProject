@@ -8,7 +8,7 @@ public class Person extends BasicModel {
 	public static final String PASSWORD_FIELD_NAME = "password"; 
 	public static final String EMAIL_FIELD_NAME = "email";
 	
-	@DatabaseField(id = true, columnName = "first_name")
+	@DatabaseField(columnName = "first_name")
 	private String firstName;
 	@DatabaseField(columnName = "last_name")
 	private String lastName;

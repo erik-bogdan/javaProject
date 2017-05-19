@@ -2,6 +2,7 @@ package main.java.Controller;
 
 import main.java.Model.Person;
 import main.java.Model.Database;
+import main.java.Model.Match;
 import main.java.Controller.BaseController;
 
 import main.java.Gui;
@@ -27,12 +28,13 @@ public class PersonController extends BaseController {
 	public static List<Person> likedPerson;
 	public static List<Person> dislikedPerson;
 	public static Dao<Person, String> personDao;
-	
+	public static Dao<Match, String> matchDao;
 	
     public static void person() throws Exception {
 
     	personDao = DaoManager.createDao(dbConn, Person.class);
-    	System.out.println(loggedPerson);
+    	matchDao = DaoManager.createDao(dbConn, Match.class);
+    	//System.out.println(loggedPerson);
     	//createPerson();
     	
     	List<Person> peopleList =
@@ -53,6 +55,7 @@ public class PersonController extends BaseController {
     	       String question = scanInput.nextLine();
     		   if(question.equals("yes")) {
     			   likedPerson.add(person);
+    			   createMatch(loggedPerson.get(0).getId(), person.getId());
     	            break;
     	        } else if(question.equals("no")) {
     	        	dislikedPerson.add(person);
@@ -75,7 +78,20 @@ public class PersonController extends BaseController {
     	person.setLastName("Molnar");
     	person.setAge(11);
 
-    	// persist the account object to the database
+    	// persist the person object to the database
     	personDao.create(person);
+    }
+    
+    public static void createMatch(int firstPersonId, int secondPersonId) throws SQLException 
+    {
+    	
+        // create an instance of Account
+    	Match match = new Match();
+    	match.setFirstPersonId(firstPersonId);
+    	match.setSecondPersonId(secondPersonId);
+    	match.setStatus(1);
+
+    	// persist the match object to the database
+    	matchDao.create(match);
     }
 }
