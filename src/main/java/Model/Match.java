@@ -7,12 +7,19 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "matches")
 public class Match extends BasicModel {
-	//public static final String PASSWORD_FIELD_NAME = "password"; 
-	//public static final String EMAIL_FIELD_NAME = "email";
+	public static final String FIRST_PERSON_ID_FIELD_NAME = "first_person_id"; 
+	public static final String SECOND_PERSON_ID_FIELD_NAME = "second_person_id";
 	
-	@DatabaseField(columnName = "first_person_id")
+	public static final int STATUS_NOONE = 0;
+	public static final int STATUS_LIKED = 1;
+	public static final int STATUS_DISLIKED = 2;
+	public static final int STATUS_MATCHED = 3;
+	public static final int STATUS_DECLINED = 4;
+
+	
+	@DatabaseField(columnName = FIRST_PERSON_ID_FIELD_NAME)
 	private int firstPersonId;
-	@DatabaseField(columnName = "second_person_id")
+	@DatabaseField(columnName = SECOND_PERSON_ID_FIELD_NAME)
 	private int secondPersonId;
 	@DatabaseField
 	private int status;
