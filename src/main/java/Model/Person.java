@@ -20,6 +20,8 @@ public class Person extends BasicModel {
 	private String email;
 	@DatabaseField(columnName = PASSWORD_FIELD_NAME)
 	private String password;
+	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = Match.FIRST_PERSON_ID_FIELD_NAME)
+    private Match matches;
 
 	
 	public void setFirstName(String firstName) {
